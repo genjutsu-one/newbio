@@ -1,5 +1,5 @@
 export function init3DTilt() {
-  document.querySelectorAll('.card, .stat-box, .community-item').forEach(card => {
+  document.querySelectorAll('.card, .stat-box').forEach(card => {
     let entered = false;
 
     card.addEventListener('mouseenter', () => {
