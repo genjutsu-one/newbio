@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(loadReviews, 300);
   
   initUI();
+  initThemeToggle();
   initMusicPlayer();
   initBackground();
   init3DTilt();
@@ -55,3 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
     deactivateBox();
   }, { passive: true });
 });
+
+function initThemeToggle() {
+  const button = document.getElementById('theme-toggle');
+  if (!button) return;
+
+  const updateText = () => {
+    const isLight = document.documentElement.classList.contains('light-theme');
+    button.textContent = isLight ? 'beach' : 'summer';
+  };
+
+  button.addEventListener('click', () => {
+    const isLight = document.documentElement.classList.toggle('light-theme');
+    localStorage.setItem('themeMode', isLight ? 'light' : 'dark');
+    updateText();
+  });
+
+  updateText();
+}

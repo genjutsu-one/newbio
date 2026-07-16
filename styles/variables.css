@@ -11,5 +11,21 @@
   --color-white:    #ffffff;
   --font-mono:      'JetBrains Mono', monospace;
   --font-display:   'Syne', sans-serif;
+  --font-title:     'Fredoka One', cursive;
   --font-gothic:    'UnifrakturMaguntia', cursive;
+}
+
+html.light-theme {
+  --color-bg:       #f7f5ee;
+  --color-surface:  rgba(255,255,255,.92);
+  --color-raised:   rgba(255,255,255,.78);
+  --color-elevated: rgba(255,255,255,.95);
+  --color-border:   rgba(251,191,36,.18);
+  --color-border2:  rgba(251,191,36,.28);
+  --color-text:     #3a2b1f;
+  --color-muted:    #7d644b;
+  --color-faint:    #8a6f54;
+  --color-white:    #ffffff;
+  --color-accent:   #fbbf24;
+  --color-shell:    #fff3dd;
 }

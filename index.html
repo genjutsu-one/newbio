@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unnamed</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <script>
+    const themeMode = localStorage.getItem('themeMode');
+    if (themeMode === 'light') document.documentElement.classList.add('light-theme');
+  </script>
 
   <link rel="stylesheet" href="styles/variables.css">
   <link rel="stylesheet" href="styles/base.css">
@@ -21,8 +25,12 @@
   <div class="orb orb-3"></div>
 </div>
 
-<div id="boot-screen">
-  <div id="boot-terminal"></div>
+<div id="splash-screen" class="splash-open" role="button" aria-label="Start site">
+  <div class="splash-inner">
+    <div class="splash-text">TAP</div>
+    <div class="splash-hint">tap anywhere to open</div>
+    <div class="splash-wave"></div>
+  </div>
 </div>
 
 <div id="site-wrapper">
@@ -30,6 +38,9 @@
 
   <header class="topbar">
     <div class="topbar-left"></div>
+    <div class="topbar-right">
+      <button type="button" id="theme-toggle" class="theme-toggle">summer</button>
+    </div>
   </header>
 
   <div style="max-width:680px; margin:0 auto; padding:0 18px;">
@@ -118,7 +129,7 @@
     </section>
 
     <div class="section-title">community</div>
-    <section id="roles">
+    <section id="roles" class="card community-card">
       <div class="community-list">
         <a class="community-item" href="https://discord.gg/DnY4wgr2ej" target="_blank" rel="noopener">
           <div class="community-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/bs.jpg" alt="Black Shores"></div>
