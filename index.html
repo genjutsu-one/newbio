@@ -4,12 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unnamed</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <script>
-    const themeMode = localStorage.getItem('themeMode');
-    if (themeMode === 'light') document.documentElement.classList.add('light-theme');
+  (function() {
+    try {
+      var t = localStorage.getItem('unnamed_theme_v1') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles/variables.css">
   <link rel="stylesheet" href="styles/base.css">
@@ -25,12 +31,8 @@
   <div class="orb orb-3"></div>
 </div>
 
-<div id="splash-screen" class="splash-open" role="button" aria-label="Start site">
-  <div class="splash-inner">
-    <div class="splash-text">TAP</div>
-    <div class="splash-hint">tap anywhere to open</div>
-    <div class="splash-wave"></div>
-  </div>
+<div id="boot-screen">
+  <div id="boot-terminal"></div>
 </div>
 
 <div id="site-wrapper">
@@ -39,7 +41,10 @@
   <header class="topbar">
     <div class="topbar-left"></div>
     <div class="topbar-right">
-      <button type="button" id="theme-toggle" class="theme-toggle">summer</button>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="switch theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
   </header>
 
@@ -78,106 +83,107 @@
       </div>
     </div>
 
-    <div class="section-title">about</div>
-    <section id="about" class="card">
-      <div class="card-header"><div class="dot"></div><span>about<span class="ext">.md</span></span></div>
-      <div class="card-content">
-        <div class="code-block">
-          <div class="code-row"><span class="line-num">1</span><span class="code-text">&nbsp;<span class="kw">const</span>&nbsp;<span class="prop">dev</span>&nbsp;<span class="punc">=</span>&nbsp;<span class="punc">{</span></span></div>
-          <div class="code-row"><span class="line-num">2</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">name</span><span class="punc">:</span>&nbsp;<span class="str">"Dmitry"</span><span class="punc">,</span></span></div>
-          <div class="code-row"><span class="line-num">3</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">alias</span><span class="punc">:</span>&nbsp;<span class="str">"Unnamed"</span><span class="punc">,</span></span></div>
-          <div class="code-row"><span class="line-num">4</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">location</span><span class="punc">:</span>&nbsp;<span class="str">"Moscow, Russia"</span><span class="punc">,</span></span></div>
-          <div class="code-row"><span class="line-num">5</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">occupation</span><span class="punc">:</span>&nbsp;<span class="str">"solo dev &amp; reseller"</span><span class="punc">,</span></span></div>
-          <div class="code-row"><span class="line-num">6</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">my_projects</span><span class="punc">:</span>&nbsp;<span class="str glitch-ts">[&nbsp;TOP&nbsp;SECRET&nbsp;]</span><span class="punc">,</span></span></div>
-          <div class="code-row"><span class="line-num">7</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">resell</span><span class="punc">:</span>&nbsp;<span class="str">"wuwa cheats"</span><span class="punc">,</span></span></div>
-          <div class="code-row"><span class="line-num">8</span><span class="code-text"><span class="punc">}</span></span></div>
-        </div>
-      </div>
-    </section>
+    <div class="section-title">workspace</div>
+    <div class="cards-grid">
 
-    <div class="section-title">music</div>
-    <section class="card music-card" onclick="toggleMute()">
-      <div class="music-banner"></div>
-      <div class="card-header"><div class="dot"></div><span>music<span class="ext">.mp3</span></span></div>
-      <div class="card-content">
-        <div class="player-wrap">
-          <img class="album-cover" id="cover"
-            src="https://i.ibb.co/7J7MnQwL/c97bcd474c2f72ff8dfce6ebac8e9280-1000x1000x1.png"
-            alt="cover">
-          <div class="track-info">
-            <div class="track-title" id="track-title"><span>I Really Want to Stay at Your House</span></div>
-            <div class="track-artist">Rosa Walton &amp; Halsey Coggins</div>
-            <div class="progress-bar" id="progress-bar">
-              <div class="progress-fill" id="progress-fill"><div class="progress-thumb"></div></div>
-            </div>
-            <div class="player-controls">
-              <span class="time-display" id="ptime">0:00 / 0:00</span>
-            </div>
+      <section id="about" class="card grid-span-2">
+        <div class="card-header"><div class="dot"></div><span>about<span class="ext">.md</span></span></div>
+        <div class="card-content">
+          <div class="code-block">
+            <div class="code-row"><span class="line-num">1</span><span class="code-text">&nbsp;<span class="kw">const</span>&nbsp;<span class="prop">dev</span>&nbsp;<span class="punc">=</span>&nbsp;<span class="punc">{</span></span></div>
+            <div class="code-row"><span class="line-num">2</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">name</span><span class="punc">:</span>&nbsp;<span class="str">"Dmitry"</span><span class="punc">,</span></span></div>
+            <div class="code-row"><span class="line-num">3</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">alias</span><span class="punc">:</span>&nbsp;<span class="str">"Unnamed"</span><span class="punc">,</span></span></div>
+            <div class="code-row"><span class="line-num">4</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">location</span><span class="punc">:</span>&nbsp;<span class="str">"Moscow, Russia"</span><span class="punc">,</span></span></div>
+            <div class="code-row"><span class="line-num">5</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">occupation</span><span class="punc">:</span>&nbsp;<span class="str">"solo dev &amp; reseller"</span><span class="punc">,</span></span></div>
+            <div class="code-row"><span class="line-num">6</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">my_projects</span><span class="punc">:</span>&nbsp;<span class="str glitch-ts">[&nbsp;TOP&nbsp;SECRET&nbsp;]</span><span class="punc">,</span></span></div>
+            <div class="code-row"><span class="line-num">7</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">resell</span><span class="punc">:</span>&nbsp;<span class="str">"wuwa cheats"</span><span class="punc">,</span></span></div>
+            <div class="code-row"><span class="line-num">8</span><span class="code-text"><span class="punc">}</span></span></div>
           </div>
         </div>
-        <audio id="audio" src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/music.mp3" preload="auto" loop></audio>
-      </div>
-    </section>
+      </section>
 
-    <div class="section-title">widget</div>
-    <section class="card widget-card" onclick="toggleWidgetMute()">
-      <div class="card-header"><div class="dot"></div><span>widget<span class="ext">.mp4</span></span></div>
-      <div class="widget-media">
-        <video id="widget-vid" autoplay muted loop playsinline preload="auto"
-          src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/widget.mp4"></video>
-      </div>
-    </section>
-
-    <div class="section-title">community</div>
-    <section id="roles" class="card community-card">
-      <div class="community-list">
-        <a class="community-item" href="https://discord.gg/DnY4wgr2ej" target="_blank" rel="noopener">
-          <div class="community-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/bs.jpg" alt="Black Shores"></div>
-          <div class="community-info">
-            <div class="community-name">Black Shores</div>
-            <div class="community-platform">Discord</div>
-          </div>
-          <div class="community-badge">reseller</div>
-        </a>
-        <a class="community-item" href="https://t.me/BlackShoresCheat" target="_blank" rel="noopener">
-          <div class="community-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/bs.jpg" alt="Black Shores"></div>
-          <div class="community-info">
-            <div class="community-name">Black Shores</div>
-            <div class="community-platform">Telegram</div>
-          </div>
-          <div class="community-badge">owner</div>
-        </a>
-      </div>
-    </section>
-
-    <div class="section-title">links</div>
-    <section class="card">
-      <div class="card-header"><div class="dot"></div><span>links<span class="ext">.ts</span></span></div>
-      <div class="card-content">
-        <div class="links-list">
-          <a class="link-item" href="tg://resolve?domain=vpnsakura&text=hi" target="_blank" rel="noopener">
-            <div class="link-left">
-              <div class="link-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/tg.png" alt="tg"></div>
-              <div>
-                <div class="link-name">Telegram</div>
-                <div class="link-url">@vpnsakura</div>
+      <section class="card music-card grid-span-1" onclick="toggleMute()">
+        <div class="music-banner"></div>
+        <div class="card-header"><div class="dot"></div><span>music<span class="ext">.mp3</span></span></div>
+        <div class="card-content">
+          <div class="player-wrap">
+            <img class="album-cover" id="cover"
+              src="https://i.ibb.co/7J7MnQwL/c97bcd474c2f72ff8dfce6ebac8e9280-1000x1000x1.png"
+              alt="cover">
+            <div class="track-info">
+              <div class="track-title" id="track-title"><span>I Really Want to Stay at Your House</span></div>
+              <div class="track-artist">Rosa Walton &amp; Halsey Coggins</div>
+              <div class="progress-bar" id="progress-bar">
+                <div class="progress-fill" id="progress-fill"><div class="progress-thumb"></div></div>
+              </div>
+              <div class="player-controls">
+                <span class="time-display" id="ptime">0:00 / 0:00</span>
               </div>
             </div>
-            <span class="link-arrow">→</span>
-          </a>
-          <a class="link-item" href="https://discord.com/users/715859176890433546" target="_blank" rel="noopener">
-            <div class="link-left">
-              <div class="link-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/discord.jpg" alt="ds"></div>
-              <div>
-                <div class="link-name">Discord</div>
-                <div class="link-url">@russiavpn</div>
-              </div>
+          </div>
+          <audio id="audio" src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/music.mp3" preload="auto" loop></audio>
+        </div>
+      </section>
+
+      <section id="roles" class="card grid-span-1">
+        <div class="card-header"><div class="dot"></div><span>community<span class="ext">.json</span></span></div>
+        <div class="community-list card-content">
+          <a class="community-item" href="https://discord.gg/DnY4wgr2ej" target="_blank" rel="noopener">
+            <div class="community-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/bs.jpg" alt="Black Shores"></div>
+            <div class="community-info">
+              <div class="community-name">Black Shores</div>
+              <div class="community-platform">Discord</div>
             </div>
-            <span class="link-arrow">→</span>
+            <div class="community-badge">reseller</div>
+          </a>
+          <a class="community-item" href="https://t.me/BlackShoresCheat" target="_blank" rel="noopener">
+            <div class="community-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/bs.jpg" alt="Black Shores"></div>
+            <div class="community-info">
+              <div class="community-name">Black Shores</div>
+              <div class="community-platform">Telegram</div>
+            </div>
+            <div class="community-badge">owner</div>
           </a>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section class="card widget-card grid-span-2" onclick="toggleWidgetMute()">
+        <div class="card-header"><div class="dot"></div><span>widget<span class="ext">.mp4</span></span></div>
+        <div class="widget-media">
+          <video id="widget-vid" autoplay muted loop playsinline preload="auto"
+            src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/widget.mp4"></video>
+        </div>
+      </section>
+
+      <section class="card grid-span-2">
+        <div class="card-header"><div class="dot"></div><span>links<span class="ext">.ts</span></span></div>
+        <div class="card-content">
+          <div class="links-list">
+            <a class="link-item" href="tg://resolve?domain=vpnsakura&text=hi" target="_blank" rel="noopener">
+              <div class="link-left">
+                <div class="link-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/tg.png" alt="tg"></div>
+                <div>
+                  <div class="link-name">Telegram</div>
+                  <div class="link-url">@vpnsakura</div>
+                </div>
+              </div>
+              <span class="link-arrow">→</span>
+            </a>
+            <a class="link-item" href="https://discord.com/users/715859176890433546" target="_blank" rel="noopener">
+              <div class="link-left">
+                <div class="link-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/discord.jpg" alt="ds"></div>
+                <div>
+                  <div class="link-name">Discord</div>
+                  <div class="link-url">@russiavpn</div>
+                </div>
+              </div>
+              <span class="link-arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
 
     <div class="section-title">reviews</div>
     <section id="reviews" class="card">
@@ -223,15 +229,23 @@
     resize();
     window.addEventListener('resize', resize);
 
+    let charColor = getComputedStyle(document.documentElement).getPropertyValue('--matrix-char').trim() || '#8b5cf6';
+    let fadeRgb = getComputedStyle(document.documentElement).getPropertyValue('--matrix-fade-rgb').trim() || '5,5,5';
+
+    window.addEventListener('themechange', () => {
+      charColor = getComputedStyle(document.documentElement).getPropertyValue('--matrix-char').trim() || charColor;
+      fadeRgb = getComputedStyle(document.documentElement).getPropertyValue('--matrix-fade-rgb').trim() || fadeRgb;
+    });
+
     const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEF<>{}[]|\\/';
     const fs = 13;
     let cols = Math.floor(canvas.width / fs);
     let drops = Array(cols).fill(1);
 
     function draw() {
-      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillStyle = 'rgba(' + fadeRgb + ',0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#8b5cf6';
+      ctx.fillStyle = charColor;
       ctx.font = fs + 'px monospace';
       cols = Math.floor(canvas.width / fs);
       if (drops.length !== cols) drops = Array(cols).fill(1);
