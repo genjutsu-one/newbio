@@ -1,0 +1,54 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.005) 2px, rgba(255,255,255,.005) 4px);
+  pointer-events: none; z-index: 2;
+}
+
+#site-wrapper {
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+#site-wrapper.visible { opacity: 1; }
+
+.main-wrap { 
+  max-width: 680px; margin: 0 auto; padding: 0 18px 80px; 
+  position: relative;
+  z-index: 10; 
+}
+
+.main-wrap > * {
+  opacity: 0;
+  translate: 0 -42px;
+  filter: blur(4px);
+}
+#site-wrapper.visible .main-wrap > *.reveal-in {
+  animation: slideIn .72s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    translate: 0 -42px;
+    filter: blur(4px);
+  }
+  65%  { opacity: 1; }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    filter: blur(0);
+  }
+}
