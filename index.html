@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unnamed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/boot.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/elements.css">
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<div id="boot-screen">
+  <div id="boot-terminal"></div>
+</div>
+
+<div id="site-wrapper">
+  <canvas id="bg-canvas"></canvas>
+
+  <header class="topbar">
+    <div class="topbar-left"></div>
+  </header>
+
+  <div style="max-width:680px; margin:0 auto; padding:0 18px;">
+    <div class="profile-card">
+      <div class="profile-banner-wrap">
+        <img class="profile-banner"
+          src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/banner.gif"
+          alt="banner">
+      </div>
+      <div class="profile-bottom">
+        <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+        <div class="matrix-fade"></div>
+        <div class="avatar-wrap">
+          <img class="avatar" src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/avatar.jpg" alt="avatar">
+        </div>
+        <div class="profile-name" id="pname-el">Unnamed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-wrap">
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number rating-counter">...</div>
+        <div class="stat-label">// rating</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number view-counter">...</div>
+        <div class="stat-label">// views</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number reviews-counter">...</div>
+        <div class="stat-label">// reviews</div>
+      </div>
+    </div>
+
+    <div class="section-title">about</div>
+    <section id="about" class="card">
+      <div class="card-header"><div class="dot"></div><span>about<span class="ext">.md</span></span></div>
+      <div class="card-content">
+        <div class="code-block">
+          <div class="code-row"><span class="line-num">1</span><span class="code-text">&nbsp;<span class="kw">const</span>&nbsp;<span class="prop">dev</span>&nbsp;<span class="punc">=</span>&nbsp;<span class="punc">{</span></span></div>
+          <div class="code-row"><span class="line-num">2</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">name</span><span class="punc">:</span>&nbsp;<span class="str">"Dmitry"</span><span class="punc">,</span></span></div>
+          <div class="code-row"><span class="line-num">3</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">alias</span><span class="punc">:</span>&nbsp;<span class="str">"Unnamed"</span><span class="punc">,</span></span></div>
+          <div class="code-row"><span class="line-num">4</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">location</span><span class="punc">:</span>&nbsp;<span class="str">"Moscow, Russia"</span><span class="punc">,</span></span></div>
+          <div class="code-row"><span class="line-num">5</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">occupation</span><span class="punc">:</span>&nbsp;<span class="str">"solo dev &amp; reseller"</span><span class="punc">,</span></span></div>
+          <div class="code-row"><span class="line-num">6</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">my_projects</span><span class="punc">:</span>&nbsp;<span class="str glitch-ts">[&nbsp;TOP&nbsp;SECRET&nbsp;]</span><span class="punc">,</span></span></div>
+          <div class="code-row"><span class="line-num">7</span><span class="code-text">&nbsp;&nbsp;&nbsp;<span class="prop">resell</span><span class="punc">:</span>&nbsp;<span class="str">"wuwa cheats"</span><span class="punc">,</span></span></div>
+          <div class="code-row"><span class="line-num">8</span><span class="code-text"><span class="punc">}</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title">music</div>
+    <section class="card music-card" onclick="toggleMute()">
+      <div class="music-banner"></div>
+      <div class="card-header"><div class="dot"></div><span>music<span class="ext">.mp3</span></span></div>
+      <div class="card-content">
+        <div class="player-wrap">
+          <img class="album-cover" id="cover"
+            src="https://i.ibb.co/7J7MnQwL/c97bcd474c2f72ff8dfce6ebac8e9280-1000x1000x1.png"
+            alt="cover">
+          <div class="track-info">
+            <div class="track-title" id="track-title"><span>I Really Want to Stay at Your House</span></div>
+            <div class="track-artist">Rosa Walton &amp; Halsey Coggins</div>
+            <div class="progress-bar" id="progress-bar">
+              <div class="progress-fill" id="progress-fill"><div class="progress-thumb"></div></div>
+            </div>
+            <div class="player-controls">
+              <span class="time-display" id="ptime">0:00 / 0:00</span>
+            </div>
+          </div>
+        </div>
+        <audio id="audio" src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/music.mp3" preload="auto" loop></audio>
+      </div>
+    </section>
+
+    <div class="section-title">widget</div>
+    <section class="card widget-card" onclick="toggleWidgetMute()">
+      <div class="card-header"><div class="dot"></div><span>widget<span class="ext">.mp4</span></span></div>
+      <div class="widget-media">
+        <video id="widget-vid" autoplay muted loop playsinline preload="auto"
+          src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/widget.mp4"></video>
+      </div>
+    </section>
+
+    <div class="section-title">community</div>
+    <section id="roles">
+      <div class="community-list">
+        <a class="community-item" href="https://discord.gg/DnY4wgr2ej" target="_blank" rel="noopener">
+          <div class="community-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/bs.jpg" alt="Black Shores"></div>
+          <div class="community-info">
+            <div class="community-name">Black Shores</div>
+            <div class="community-platform">Discord</div>
+          </div>
+          <div class="community-badge">reseller</div>
+        </a>
+        <a class="community-item" href="https://t.me/BlackShoresCheat" target="_blank" rel="noopener">
+          <div class="community-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/bs.jpg" alt="Black Shores"></div>
+          <div class="community-info">
+            <div class="community-name">Black Shores</div>
+            <div class="community-platform">Telegram</div>
+          </div>
+          <div class="community-badge">owner</div>
+        </a>
+      </div>
+    </section>
+
+    <div class="section-title">links</div>
+    <section class="card">
+      <div class="card-header"><div class="dot"></div><span>links<span class="ext">.ts</span></span></div>
+      <div class="card-content">
+        <div class="links-list">
+          <a class="link-item" href="tg://resolve?domain=vpnsakura&text=hi" target="_blank" rel="noopener">
+            <div class="link-left">
+              <div class="link-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/tg.png" alt="tg"></div>
+              <div>
+                <div class="link-name">Telegram</div>
+                <div class="link-url">@vpnsakura</div>
+              </div>
+            </div>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="link-item" href="https://discord.com/users/715859176890433546" target="_blank" rel="noopener">
+            <div class="link-left">
+              <div class="link-icon"><img src="https://raw.githubusercontent.com/genjutsu-one/bio/main/media/discord.jpg" alt="ds"></div>
+              <div>
+                <div class="link-name">Discord</div>
+                <div class="link-url">@russiavpn</div>
+              </div>
+            </div>
+            <span class="link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title">reviews</div>
+    <section id="reviews" class="card">
+      <div class="card-header"><div class="dot"></div><span>reviews<span class="ext">.db</span></span></div>
+      <div class="card-content">
+        <div id="reviews-list"><p class="review-empty">// loading...</p></div>
+        <form class="review-form" id="review-form">
+          <input class="text-input" id="input-nick" type="text" maxlength="32" required placeholder="// nick">
+          <textarea class="text-input" id="input-text" maxlength="500" required placeholder="// leave a review..."></textarea>
+          <div class="form-bottom">
+            <div class="star-picker">
+              <svg class="star-input" data-v="1" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <svg class="star-input" data-v="2" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <svg class="star-input" data-v="3" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <svg class="star-input" data-v="4" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+              <svg class="star-input" data-v="5" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            </div>
+            <button class="submit-btn" type="submit" id="btn-submit">send</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<svg id="ficon-vol" style="display:none"></svg>
+<svg id="ficon-mute" style="display:none"></svg>
+
+<script src="js/config.js"></script>
+<script type="module" src="js/main.js"></script>
+<script>
+  (function() {
+    const canvas = document.getElementById('matrix-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const wrap = canvas.parentElement;
+
+    function resize() {
+      canvas.width = wrap.offsetWidth;
+      canvas.height = wrap.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEF<>{}[]|\\/';
+    const fs = 13;
+    let cols = Math.floor(canvas.width / fs);
+    let drops = Array(cols).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#8b5cf6';
+      ctx.font = fs + 'px monospace';
+      cols = Math.floor(canvas.width / fs);
+      if (drops.length !== cols) drops = Array(cols).fill(1);
+      for (let i = 0; i < drops.length; i++) {
+        const ch = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(ch, i * fs, drops[i] * fs);
+        if (drops[i] * fs > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+    setInterval(draw, 50);
+  })();
+</script>
+
+</body>
+</html>
