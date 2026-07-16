@@ -1,0 +1,83 @@
+#boot-screen {
+  position: fixed; inset: 0; z-index: 10000;
+  background: #050505;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .6s ease;
+}
+#boot-screen.fade-out { opacity: 0; pointer-events: none; }
+
+#boot-terminal {
+  width: min(520px, 90vw);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d8d8d8;
+}
+.boot-line { overflow: hidden; white-space: nowrap; opacity: 0; }
+.boot-line.show { opacity: 1; }
+.boot-prompt { color: #4ade80; }
+.boot-cmd    { color: #fff; }
+.boot-ok     { color: #4ade80; }
+.boot-warn   { color: #fbbf24; }
+.boot-dim    { color: #383838; }
+.boot-hi     { color: #c084fc; }
+.boot-cursor {
+  display: inline-block; width: 8px; height: 13px;
+  background: #d8d8d8; vertical-align: text-bottom;
+  animation: blink-cursor .7s steps(1) infinite;
+}
+@keyframes blink-cursor { 50% { opacity: 0; } }
+
+.bg-orbs {
+  position: fixed; inset: 0;
+  z-index: 0; overflow: hidden;
+  pointer-events: none;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: orbFloat var(--orb-time, 70s) ease-in-out infinite alternate;
+  will-change: transform;
+}
+.orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #8b5cf6, transparent);
+  top: -8%; left: -8%;
+  --orb-time: 78s;
+  --x1: 55vw; --y1: 8vh;
+  --x2: 76vw; --y2: 58vh;
+  --x3: 28vw; --y3: 74vh;
+  --x4: 88vw; --y4: 24vh;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, #06b6d4, transparent);
+  top: 46%; right: -10%;
+  --orb-time: 92s;
+  --x1: -42vw; --y1: -28vh;
+  --x2: -78vw; --y2: 14vh;
+  --x3: -22vw; --y3: 38vh;
+  --x4: -68vw; --y4: -42vh;
+  animation-delay: -7s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #ec4899, transparent);
+  bottom: -10%; left: 36%;
+  --orb-time: 84s;
+  --x1: -34vw; --y1: -48vh;
+  --x2: 36vw; --y2: -70vh;
+  --x3: 52vw; --y3: -22vh;
+  --x4: -16vw; --y4: -62vh;
+  animation-delay: -14s;
+}
+@keyframes orbFloat {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  25% { transform: translate3d(var(--x1), var(--y1), 0) scale(1.12); }
+  50% { transform: translate3d(var(--x2), var(--y2), 0) scale(0.96); }
+  75% { transform: translate3d(var(--x3), var(--y3), 0) scale(1.06); }
+  100% { transform: translate3d(var(--x4), var(--y4), 0) scale(1); }
+}

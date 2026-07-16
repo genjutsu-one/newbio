@@ -1,0 +1,15 @@
+:root {
+  --color-bg:       #050505;
+  --color-surface:  #0a0a0a;
+  --color-raised:   #0f0f0f;
+  --color-elevated: #151515;
+  --color-border:   #1a1a1a;
+  --color-border2:  #262626;
+  --color-text:     #d8d8d8;
+  --color-muted:    #707070;
+  --color-faint:    #383838;
+  --color-white:    #ffffff;
+  --font-mono:      'JetBrains Mono', monospace;
+  --font-display:   'Syne', sans-serif;
+  --font-gothic:    'UnifrakturMaguntia', cursive;
+}
