@@ -6,19 +6,20 @@ import { initBackground } from './background.js';
 import { bootSequence } from './boot.js';
 import { init3DTilt } from './tilt.js';
 import { initWidget } from './widget.js';
+import { initTheme } from './theme.js';
 
 const sbClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 window._sbClient = sbClient;
 setSb(sbClient);
 
 bootSequence();
+initTheme();
 
 document.addEventListener('DOMContentLoaded', () => {
   trackView();
   setTimeout(loadReviews, 300);
   
   initUI();
-  initThemeToggle();
   initMusicPlayer();
   initBackground();
   init3DTilt();
@@ -55,22 +56,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('touchstart', () => {
     deactivateBox();
   }, { passive: true });
-});
 
-function initThemeToggle() {
-  const button = document.getElementById('theme-toggle');
-  if (!button) return;
+  const pressTargets = '.card, .community-item, .link-item';
 
-  const updateText = () => {
-    const isLight = document.documentElement.classList.contains('light-theme');
-    button.textContent = isLight ? 'beach' : 'summer';
-  };
-
-  button.addEventListener('click', () => {
-    const isLight = document.documentElement.classList.toggle('light-theme');
-    localStorage.setItem('themeMode', isLight ? 'light' : 'dark');
-    updateText();
+  document.addEventListener('pointerdown', (e) => {
+    const el = e.target.closest(pressTargets);
+    if (el) el.classList.add('pressed');
   });
 
-  updateText();
-}
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(evt => {
+    document.addEventListener(evt, () => {
+      document.querySelectorAll('.pressed').forEach(el => el.classList.remove('pressed'));
+    });
+  });
+});
