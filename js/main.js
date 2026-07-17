@@ -56,17 +56,4 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('touchstart', () => {
     deactivateBox();
   }, { passive: true });
-
-  const pressTargets = '.card, .community-item, .link-item';
-
-  document.addEventListener('pointerdown', (e) => {
-    const el = e.target.closest(pressTargets);
-    if (el) el.classList.add('pressed');
-  });
-
-  ['pointerup', 'pointercancel', 'pointerleave'].forEach(evt => {
-    document.addEventListener(evt, () => {
-      document.querySelectorAll('.pressed').forEach(el => el.classList.remove('pressed'));
-    });
-  });
 });
