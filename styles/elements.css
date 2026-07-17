@@ -185,6 +185,5 @@ textarea.text-input { resize: none; min-height: 70px; }
 }
 .submit-btn:active {
   transform: translateY(0);
-  box-shadow: 0 0 0 2px var(--accent-press);
 }
 .submit-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
