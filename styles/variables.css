@@ -21,12 +21,12 @@
   --accent-rgb:      139,92,246;
   --accent-2:        #06b6d4;
   --accent-3:        #ec4899;
-  --accent-press:    #ffcc33;
 
   --name-gradient:   linear-gradient(90deg, #6534bf, #6600ff, #ec4899, #6600ff, #6534bf);
   --matrix-char:     #8b5cf6;
   --matrix-fade-rgb: 5,5,5;
   --bg-image:        none;
+  --droplet-opacity: 0.4;
 }
 
 [data-theme="light"] {
@@ -51,12 +51,12 @@
   --accent-rgb:      255,107,74;
   --accent-2:        #14b8a6;
   --accent-3:        #ffb347;
-  --accent-press:    #ffcc33;
 
   --name-gradient:   linear-gradient(90deg, #ff6b4a, #ffb347, #ff8fa3, #ffb347, #ff6b4a);
   --matrix-char:     #ff8c5a;
   --matrix-fade-rgb: 251,238,217;
   --bg-image:        url('https://raw.githubusercontent.com/genjutsu-one/newbio/main/media/summer_back.jpg');
+  --droplet-opacity: 0.28;
 }
 
 :root {
