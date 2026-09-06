@@ -1,66 +1,22 @@
-:root,
-[data-theme="dark"] {
-  --color-bg:       #050505;
-  --color-surface:  #0a0a0a;
-  --color-raised:   #0f0f0f;
-  --color-elevated: #151515;
-  --color-border:   #1a1a1a;
-  --color-border2:  #262626;
-  --color-text:     #d8d8d8;
-  --color-muted:    #707070;
-  --color-faint:    #383838;
-  --color-white:    #ffffff;
-
-  --bg-rgb:          5,5,5;
-  --card-bg-rgb:     10,10,10;
-  --card-bg2-rgb:    15,15,15;
-  --card-alpha:      0.45;
-  --card-alpha2:     0.45;
-
-  --accent:          #8b5cf6;
-  --accent-rgb:      139,92,246;
-  --accent-2:        #06b6d4;
-  --accent-3:        #ec4899;
-
-  --name-gradient:   linear-gradient(90deg, #6534bf, #6600ff, #ec4899, #6600ff, #6534bf);
-  --matrix-char:     #8b5cf6;
-  --matrix-fade-rgb: 5,5,5;
-  --bg-image:        none;
-  --droplet-opacity: 0.4;
-}
-
-[data-theme="light"] {
-  --color-bg:       #fbeed9;
-  --color-surface:  #fff9ef;
-  --color-raised:   #fff3e1;
-  --color-elevated: #ffe9cd;
-  --color-border:   rgba(130,80,42,0.16);
-  --color-border2:  rgba(130,80,42,0.28);
-  --color-text:     #503320;
-  --color-muted:    #93705a;
-  --color-faint:    #c19b74;
-  --color-white:    #2e1c11;
-
-  --bg-rgb:          251,238,217;
-  --card-bg-rgb:     255,250,240;
-  --card-bg2-rgb:    255,244,224;
-  --card-alpha:      0.55;
-  --card-alpha2:     0.55;
-
-  --accent:          #ff6b4a;
-  --accent-rgb:      255,107,74;
-  --accent-2:        #14b8a6;
-  --accent-3:        #ffb347;
-
-  --name-gradient:   linear-gradient(90deg, #ff6b4a, #ffb347, #ff8fa3, #ffb347, #ff6b4a);
-  --matrix-char:     #ff8c5a;
-  --matrix-fade-rgb: 251,238,217;
-  --bg-image:        url('https://raw.githubusercontent.com/genjutsu-one/newbio/main/media/summer_back.jpg');
-  --droplet-opacity: 0.28;
-}
-
 :root {
-  --font-mono:      'JetBrains Mono', monospace;
-  --font-display:   'Syne', sans-serif;
-  --font-gothic:    'UnifrakturMaguntia', cursive;
+  --color-bg:       #1a120c;
+  --color-surface:  #221710;
+  --color-raised:   #2a1c13;
+  --color-elevated: #33241a;
+  --color-border:   #3a281c;
+  --color-border2:  #4d3524;
+  --color-text:     #e7d3ba;
+  --color-muted:    #a88363;
+  --color-faint:    #6e5138;
+  --color-white:    #fbead6;
+
+  --accent-rust:    #c1542c;
+  --accent-amber:   #e2a44f;
+  --accent-gold:    #f0cc7e;
+  --accent-moss:    #8a9a5b;
+  --accent-wine:    #7a3245;
+
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-display: 'Fraunces', serif;
+  --font-sans:    'Manrope', sans-serif;
 }
