@@ -1,5 +1,3 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-
 let sb;
 
 function setViewCounter(n) {
@@ -50,7 +48,7 @@ async function loadReviews() {
   const box = document.getElementById('reviews-list');
   try {
     const { data, error } = await sb.from('reviews').select('nick,text,rating,created_at').order('created_at',{ascending:false});
-    
+
     let avg = '0.0';
     let cnt = 0;
     if (data && data.length) {
@@ -58,15 +56,15 @@ async function loadReviews() {
       const sum = data.reduce((a, r) => a + (r.rating || 0), 0);
       avg = (sum / cnt).toFixed(1);
     }
-    
+
     document.querySelectorAll('.rating-counter').forEach(el => el.textContent = avg);
     document.querySelectorAll('.reviews-counter').forEach(el => el.textContent = cnt);
 
-    if (error || !data?.length) { 
-      box.innerHTML='<p class="review-empty">// no reviews yet. be first.</p>'; 
-      return; 
+    if (error || !data?.length) {
+      box.innerHTML='<p class="review-empty">// no reviews yet. be first.</p>';
+      return;
     }
-    
+
     box.innerHTML='';
     data.forEach(r => {
       const date = new Date(r.created_at).toLocaleDateString('en-GB');
@@ -81,7 +79,6 @@ async function loadReviews() {
     document.querySelectorAll('.reviews-counter').forEach(el => el.textContent = '0');
   }
 }
-
 window._loadReviews = loadReviews;
 
 export { trackView, loadReviews, sanitize };
