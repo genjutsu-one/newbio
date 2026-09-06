@@ -1,0 +1,85 @@
+.leaves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 50;
+  overflow: hidden;
+
+  pointer-events: none;
+
+  transform: translate3d(0, -20vh, 0);
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+[class^="leaf"] {
+  will-change: transform;
+  display: inline-block;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  animation: leaves-falling;
+  animation-iteration-count: infinite;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.leaf-type-maple { background-image: url("https://raw.githubusercontent.com/genjutsu-one/bio/main/media/maple.png"); }
+.leaf-type-oak   { background-image: url("https://raw.githubusercontent.com/genjutsu-one/bio/main/media/oak.png"); }
+
+[class^="leaf"]:nth-child(4n+0) { width: 2.5rem; height: 2.5rem; transform-origin: -5% -5%; }
+[class^="leaf"]:nth-child(4n+1) { width: 2rem;   height: 2rem;   transform-origin: 15% 0; }
+[class^="leaf"]:nth-child(4n+2) { width: 1.5rem; height: 1.5rem; transform-origin: 0 -30%; }
+[class^="leaf"]:nth-child(4n+3) { width: 1rem;   height: 1rem;   transform-origin: -100% -100%; }
+
+[class^="leaf"]:first-child { transform-origin: 60% 40%; }
+
+[class^="leaf"]:nth-of-type(5n+0) { animation-delay: 0s; }
+[class^="leaf"]:nth-of-type(5n+1) { animation-delay: 2s; }
+[class^="leaf"]:nth-of-type(5n+2) { animation-delay: 4s; }
+[class^="leaf"]:nth-of-type(5n+3) { animation-delay: 6s; }
+[class^="leaf"]:nth-of-type(5n+4) { animation-delay: 8s; }
+
+[class^="leaf"]:nth-child(3n+0) { animation-duration: 12s; }
+[class^="leaf"]:nth-child(3n+1) { animation-duration: 18s; }
+[class^="leaf"]:nth-child(3n+2) { animation-duration: 24s; }
+
+[class^="leaf"]:nth-of-type(6n+0) { animation-timing-function: ease-in-out; }
+[class^="leaf"]:nth-of-type(6n+1) { animation-timing-function: ease-out; }
+[class^="leaf"]:nth-of-type(6n+2) { animation-timing-function: ease; }
+[class^="leaf"]:nth-of-type(6n+3) { animation-timing-function: ease-in; }
+[class^="leaf"]:nth-of-type(6n+4) { animation-timing-function: linear; }
+[class^="leaf"]:nth-of-type(6n+5) { animation-timing-function: cubic-bezier(0.2, 0.3, 0.8, 0.9); }
+
+[class^="leaf"]:nth-of-type(7n+0) { opacity: 0.6; }
+[class^="leaf"]:nth-of-type(7n+1) { opacity: 0.9; }
+[class^="leaf"]:nth-of-type(7n+2) { opacity: 0.5; }
+[class^="leaf"]:nth-of-type(7n+4) { opacity: 0.8; }
+[class^="leaf"]:nth-of-type(7n+6) { opacity: 0.7; }
+
+.leaf-600px, .leaf-768px, .leaf-1024px, .leaf-1280px,
+.leaf-1366px, .leaf-1440px, .leaf-1600px, .leaf-1800px, .leaf-1920px {
+  display: none;
+}
+@media (min-width: 600px)  { .leaf-600px  { display: inline-block; } }
+@media (min-width: 768px)  { .leaf-768px  { display: inline-block; } }
+@media (min-width: 1024px) { .leaf-1024px { display: inline-block; } }
+@media (min-width: 1280px) { .leaf-1280px { display: inline-block; } }
+@media (min-width: 1366px) { .leaf-1366px { display: inline-block; } }
+@media (min-width: 1600px) { .leaf-1600px { display: inline-block; } }
+@media (min-width: 1800px) { .leaf-1800px { display: inline-block; } }
+@media (min-width: 1920px) { .leaf-1920px { display: inline-block; } }
+
+@keyframes leaves-falling {
+  from { transform: translate(0, 0)      rotate(0deg)   scale(0.8); }
+  to   { transform: translate(0, 120vh)  rotate(360deg) scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaves { display: none; }
+  }
