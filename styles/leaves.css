@@ -5,7 +5,7 @@
   width: 100%;
   text-align: center;
   z-index: 50;
-  overflow: hidden;
+  overflow: visible;
 
   pointer-events: none;
 
@@ -82,4 +82,4 @@
 
 @media (prefers-reduced-motion: reduce) {
   .leaves { display: none; }
-  }
+}
