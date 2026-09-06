@@ -62,24 +62,36 @@
 [class^="leaf"]:nth-of-type(7n+4) { opacity: 0.8; }
 [class^="leaf"]:nth-of-type(7n+6) { opacity: 0.7; }
 
-.leaf-600px, .leaf-768px, .leaf-1024px, .leaf-1280px,
-.leaf-1366px, .leaf-1440px, .leaf-1600px, .leaf-1800px, .leaf-1920px {
-  display: none;
-}
-@media (min-width: 600px)  { .leaf-600px  { display: inline-block; } }
-@media (min-width: 768px)  { .leaf-768px  { display: inline-block; } }
-@media (min-width: 1024px) { .leaf-1024px { display: inline-block; } }
-@media (min-width: 1280px) { .leaf-1280px { display: inline-block; } }
-@media (min-width: 1366px) { .leaf-1366px { display: inline-block; } }
-@media (min-width: 1600px) { .leaf-1600px { display: inline-block; } }
-@media (min-width: 1800px) { .leaf-1800px { display: inline-block; } }
-@media (min-width: 1920px) { .leaf-1920px { display: inline-block; } }
-
 @keyframes leaves-falling {
   from { transform: translate(0, 0)      rotate(0deg)   scale(0.8); }
   to   { transform: translate(0, 120vh)  rotate(360deg) scale(1.2); }
 }
 
+.boot-leaves {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.boot-leaf {
+  position: absolute;
+  top: -12%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation-name: boot-leaf-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes boot-leaf-fall {
+  from { transform: translateY(0) rotate(0deg); opacity: 1; }
+  to   { transform: translateY(120vh) rotate(var(--boot-rot, 360deg)); opacity: .9; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .leaves { display: none; }
+  .boot-leaves { display: none; }
 }
