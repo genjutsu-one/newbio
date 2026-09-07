@@ -15,7 +15,7 @@ export function bootSequence() {
   const MIN_CROSS_MS = 1500;
   const MAX_CROSS_MS = 2500;
   const FADE_TIMEOUT_MS = FILL_MS + MAX_CROSS_MS + 200;
-  const leafCount = window.innerWidth < 600 ? 70 : 130;
+  const leafCount = window.innerWidth < 600 ? 120 : 220;
   const W = window.innerWidth;
   const H = window.innerHeight;
 
