@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   text-align: center;
-  z-index: 50;
+  z-index: 1;
   overflow: visible;
 
   pointer-events: none;
@@ -32,10 +32,10 @@
 .leaf-type-maple { background-image: url("https://raw.githubusercontent.com/genjutsu-one/bio/main/media/maple.png"); }
 .leaf-type-oak   { background-image: url("https://raw.githubusercontent.com/genjutsu-one/bio/main/media/oak.png"); }
 
-[class^="leaf"]:nth-child(4n+0) { width: 2.5rem; height: 2.5rem; transform-origin: -5% -5%; }
-[class^="leaf"]:nth-child(4n+1) { width: 2rem;   height: 2rem;   transform-origin: 15% 0; }
-[class^="leaf"]:nth-child(4n+2) { width: 1.5rem; height: 1.5rem; transform-origin: 0 -30%; }
-[class^="leaf"]:nth-child(4n+3) { width: 1rem;   height: 1rem;   transform-origin: -100% -100%; }
+[class^="leaf"]:nth-child(4n+0) { width: 4.5rem; height: 4.5rem; transform-origin: -5% -5%; }
+[class^="leaf"]:nth-child(4n+1) { width: 3.6rem; height: 3.6rem; transform-origin: 15% 0; }
+[class^="leaf"]:nth-child(4n+2) { width: 2.8rem; height: 2.8rem; transform-origin: 0 -30%; }
+[class^="leaf"]:nth-child(4n+3) { width: 2rem;   height: 2rem;   transform-origin: -100% -100%; }
 
 [class^="leaf"]:first-child { transform-origin: 60% 40%; }
 
@@ -77,18 +77,12 @@
 
 .boot-leaf {
   position: absolute;
-  top: -12%;
+  top: 0;
+  left: 0;
+  opacity: 0;
   background-size: contain;
   background-repeat: no-repeat;
-  animation-name: boot-leaf-fall;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
   will-change: transform, opacity;
-}
-
-@keyframes boot-leaf-fall {
-  from { transform: translateY(0) rotate(0deg); opacity: 1; }
-  to   { transform: translateY(120vh) rotate(var(--boot-rot, 360deg)); opacity: .9; }
 }
 
 @media (prefers-reduced-motion: reduce) {
