@@ -205,18 +205,24 @@
       requestAnimationFrame(frame);
     }
 
+    var SHOW_DELAY = 900;
+
+    function scheduleBlow() {
+      setTimeout(blowAway, SHOW_DELAY);
+    }
+
     if ('IntersectionObserver' in window) {
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            blowAway();
+            scheduleBlow();
             observer.disconnect();
           }
         });
       }, { threshold: 0.15 });
       observer.observe(card);
     } else {
-      blowAway();
+      scheduleBlow();
     }
   }
 
