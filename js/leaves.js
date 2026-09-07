@@ -24,7 +24,7 @@
 
     var W = window.innerWidth;
     var H = window.innerHeight;
-    var COUNT = W < 700 ? 16 : 26;
+    var COUNT = W < 700 ? 24 : 38;
 
     var REPEL_RADIUS = 140;
     var REPEL_STRENGTH = 620;
@@ -54,7 +54,7 @@
         x: Math.random() * W,
         y: -size - Math.random() * H,
         size: size,
-        speed: 9 + Math.random() * 7,
+        speed: 13 + Math.random() * 10,
         rot: Math.random() * 360,
         rotSpeed: (Math.random() - 0.5) * 16,
         swayAmp: 10 + Math.random() * 16,
@@ -132,87 +132,92 @@
 
     if (REDUCE_MOTION) return;
 
-    var COUNT = 16;
-    var DIR = 1;
+    var COUNT = 46;
+    var triggered = false;
 
     function cardW() { return card.clientWidth || 300; }
     function cardH() { return card.clientHeight || 200; }
 
-    function resetToPile(leaf, initial) {
+    function makeLeaf() {
+      var size = 11 + Math.random() * 15;
       var W = cardW(), H = cardH();
-      leaf.state = 'piled';
-      leaf.stateT = 0;
-      leaf.pileDelay = initial ? Math.random() * 6 : 1 + Math.random() * 3.5;
-      leaf.jitterPhase = Math.random() * Math.PI * 2;
-      leaf.x = W * 0.08 + Math.random() * W * 0.16;
-      leaf.y = H - 6 - Math.random() * (leaf.size * 1.6);
-      leaf.baseX = leaf.x;
-      leaf.rot = Math.random() * 50 - 25;
-      leaf.rotSpeed = 0;
-      leaf.vx = 0;
-      leaf.vy = 0;
-    }
-
-    function makeLeaf(initial) {
-      var size = 11 + Math.random() * 13;
       var leaf = {
         el: makeLeafEl(container),
-        size: size
+        size: size,
+        x: Math.random() * W,
+        y: Math.random() * H,
+        rot: Math.random() * 360,
+        opacity: 0.45 + Math.random() * 0.45
       };
       leaf.el.style.width = size + 'px';
       leaf.el.style.height = size + 'px';
-      leaf.el.style.opacity = (0.5 + Math.random() * 0.4).toFixed(2);
-      resetToPile(leaf, initial);
+      leaf.el.style.opacity = leaf.opacity.toFixed(2);
+      leaf.el.style.transform = 'translate3d(' + leaf.x.toFixed(1) + 'px,' + leaf.y.toFixed(1) + 'px,0) rotate(' + leaf.rot.toFixed(1) + 'deg)';
       return leaf;
     }
 
     var leaves = [];
-    for (var i = 0; i < COUNT; i++) leaves.push(makeLeaf(true));
+    for (var i = 0; i < COUNT; i++) leaves.push(makeLeaf());
 
-    var lastTs = null;
-    function frame(ts) {
-      if (lastTs === null) lastTs = ts;
-      var dt = Math.min(0.05, (ts - lastTs) / 1000);
-      lastTs = ts;
-      var t = ts / 1000;
-      var W = cardW(), H = cardH();
+    function blowAway() {
+      if (triggered) return;
+      triggered = true;
 
+      var DIR = Math.random() < 0.5 ? -1 : 1;
       for (var j = 0; j < leaves.length; j++) {
         var lf = leaves[j];
-        lf.stateT += dt;
-
-        if (lf.state === 'piled') {
-          var jitter = Math.sin(t * 1.3 + lf.jitterPhase) * 1.1;
-          var visX = lf.baseX + jitter;
-          lf.el.style.transform = 'translate3d(' + visX.toFixed(1) + 'px,' + lf.y.toFixed(1) + 'px,0) rotate(' + lf.rot.toFixed(1) + 'deg)';
-
-          if (lf.stateT > lf.pileDelay) {
-            lf.state = 'blowing';
-            lf.stateT = 0;
-            lf.x = lf.baseX;
-            lf.vx = (55 + Math.random() * 55) * DIR;
-            lf.vy = -(14 + Math.random() * 20);
-            lf.rotSpeed = (Math.random() < 0.5 ? -1 : 1) * (70 + Math.random() * 140);
-          }
-          continue;
-        }
-
-        lf.vx += 70 * DIR * dt;
-        lf.vy += 24 * dt;
-        lf.x += lf.vx * dt;
-        lf.y += lf.vy * dt + Math.sin(t * 3 + lf.jitterPhase) * 5 * dt;
-        lf.rot += lf.rotSpeed * dt;
-
-        lf.el.style.transform = 'translate3d(' + lf.x.toFixed(1) + 'px,' + lf.y.toFixed(1) + 'px,0) rotate(' + lf.rot.toFixed(1) + 'deg)';
-
-        if ((DIR > 0 && lf.x - lf.size > W) || (DIR < 0 && lf.x + lf.size < 0) || lf.y - lf.size > H) {
-          resetToPile(lf, false);
-        }
+        lf.vx = (170 + Math.random() * 190) * DIR;
+        lf.vy = -(90 + Math.random() * 140);
+        lf.rotSpeed = (Math.random() < 0.5 ? -1 : 1) * (240 + Math.random() * 300);
+        lf.delay = Math.random() * 0.1;
       }
 
+      var lastTs = null;
+      var elapsedTotal = 0;
+      var DURATION = 0.9;
+
+      function frame(ts) {
+        if (lastTs === null) lastTs = ts;
+        var dt = Math.min(0.05, (ts - lastTs) / 1000);
+        lastTs = ts;
+        elapsedTotal += dt;
+
+        for (var j = 0; j < leaves.length; j++) {
+          var lf = leaves[j];
+          if (elapsedTotal < lf.delay) continue;
+
+          lf.vy += 360 * dt;
+          lf.x += lf.vx * dt;
+          lf.y += lf.vy * dt;
+          lf.rot += lf.rotSpeed * dt;
+          lf.opacity = Math.max(0, lf.opacity - dt * 1.5);
+
+          lf.el.style.opacity = lf.opacity.toFixed(2);
+          lf.el.style.transform = 'translate3d(' + lf.x.toFixed(1) + 'px,' + lf.y.toFixed(1) + 'px,0) rotate(' + lf.rot.toFixed(1) + 'deg)';
+        }
+
+        if (elapsedTotal < DURATION) {
+          requestAnimationFrame(frame);
+        } else {
+          container.remove();
+        }
+      }
       requestAnimationFrame(frame);
     }
-    requestAnimationFrame(frame);
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            blowAway();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.15 });
+      observer.observe(card);
+    } else {
+      blowAway();
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
